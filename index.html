@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@600;800&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png">
+    <link rel="stylesheet" href="css/stylesheet.css">
+
+    <title>Frontend Mentor | Interactive pricing component</title>
+
+</head>
+    <main class="main__container">
+        <header class="header__container">
+            <div class="header__header">Simple, traffic-based pricing</div>
+            <div class="header__subtext">Sign-up for our 30-day trial. <span class="header__subtext--break">No credit card required.</span></div>
+        </header>
+
+        <section class="slider__container">
+            <div class="slider__pageviews">
+                <span><span>100k</span> Pageviews</span>
+            </div>
+         
+
+            <div class="slider__slider">
+                <input type="range" min="0" max="32" value="16" class="slider" id="myRange">
+            </div>
+
+            <div class="slider__price">
+                <span class="slider__price--view" id="value">$16.00</span> 
+                </span>/ month</span>
+            </div>   
+            <div class="slider__billing">
+                <div>
+                    <label for="volume">Monthly Billing</label>
+                </div>
+                <label class="switch">
+                    <input type="checkbox" id="myCheckbox" value="off">
+                    <span class="round__slider round"></span>
+                </label>
+                    <div class="slider__yearly__discount_wrapper">
+                        <span class="slider__yearly_billing">Yearly Billing</span>
+                        <div class="billing__discount__wrapper">
+                            <span class="billing__discount" id="discount">-25%</span>
+                        </div>
+                    </div>
+            </div>
+            <div class="slider__divider"></div>
+            <div class="slider__benefits">
+                <ul class="slider__benefits__list">
+                    <li><span>Unlimited websites</span></li>
+                    <li><span>100% data ownership</span></li>
+                    <li><span>Email reports</span></li>
+                </ul>
+            </div>
+            <div  class="slider__button">
+                <button class="button">Start my trial</button>
+            </div>
+
+        </section>
+    </main>
+    <footer>
+        <div>
+            Challenge by <a class ="footer__link" href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
+            Coded by <a class ="footer__link"  href="#">Absorberend</a>.
+        </div>
+    </footer>
+  <script src="js/script.js">
+
+  </script>
+</body>
+</html>
