@@ -12,7 +12,7 @@ These page view ranges and monthly price totals were given by Frontend Mentor:
 - 500k pageviews / $24 per month
 - 1M pageviews / $36 per month
 
-# My Soluition
+# My Solution
 You can find the Frontend Mentor challenge here:
 https://www.frontendmentor.io/challenges/interactive-pricing-component-t0m8PIyY8
 
