@@ -365,7 +365,7 @@ footer {
         width: 600px;
     }
     .header__container {
-        max-height: 350px;
+        max-height: 375px;
     }
     .header__header {
         font-size: 2em;
@@ -374,10 +374,10 @@ footer {
         margin-block-start: 0.5em;
     }
     .slider__container {
-        max-height: 425px;
+        max-height: 400px;
         padding: 2.5em;
         grid-template-columns: 1em 1fr 1fr 1em;
-        grid-template-rows: 0.8fr 0.8fr 0.8fr 5px 0.8fr;
+        grid-template-rows: 0.8fr 0.8fr 0.9fr 5px 0.8fr;
         grid-template-areas: 
         ". pv pr ."
         ". sl sl ."
