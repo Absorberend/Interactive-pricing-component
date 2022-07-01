@@ -19,6 +19,6 @@ https://www.frontendmentor.io/challenges/interactive-pricing-component-t0m8PIyY8
 
 ![My solution](/design/my-solution.png "My solution")
 
-View my solution at: https://62bee9de89bbcb5eb8ae43cb--delicate-granita-d3b952.netlify.app/
+View my solution at: https://master--delicate-granita-d3b952.netlify.app/
 
 Feedback is welcome! Especially the JavaScript 😁
