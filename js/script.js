@@ -3,8 +3,10 @@ const checkbox = document.getElementById("myCheckbox");
 const output = document.getElementById("value");
 const discount = document.getElementById("discount");
 const Query = window.matchMedia('(max-width: 649px)');
+const views = document.getElementById('slider__views');
 
 let outputValue = 0;
+
 
 //Add proper discount text
 function screenTest(e) {
@@ -58,12 +60,36 @@ checkbox.oninput = function () {
 //When slider is moved show the new price based on slider value
 slider.oninput = function () {
     checkboxCheck();   
+    
 
 //Change the slider track based on the slider value
 slider.addEventListener("input", function() {
     //Slider max value is 32. 100 / 32 = 3.125. So a slider value of 16 (50% of max slider value) * 3,125 is 50% gradiant %.
     const gradientTrack = slider.value * 3.125;
     slider.style.background = `linear-gradient(90deg, hsl(174, 77%, 80%)${gradientTrack}%, hsl(224, 65%, 95%)${gradientTrack}%)`;
+    viewCheck();
     });
 }
 
+//Pageviews editor based on slider value
+const viewCheck = function () {
+    if (slider.value === '0') {
+        views.innerHTML = '0k';
+    } else if (slider.value === '4') {
+        views.innerHTML = '5k';
+    } else if (slider.value === '8') {
+        views.innerHTML = '10k';
+    } else if (slider.value === '12') {
+        views.innerHTML = '50k';
+    } else if (slider.value === '16') {
+        views.innerHTML = '100k';
+    } else if (slider.value === '20') {
+        views.innerHTML = '250k';
+    } else if (slider.value === '24') {
+        views.innerHTML = '500k';
+    } else if (slider.value === '28') {
+        views.innerHTML = '750k';
+    } else if (slider.value === '32') {
+        views.innerHTML = '1M';
+    }
+}
