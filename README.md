@@ -4,7 +4,7 @@ This is my solution for the "Interactive pricing component" challenge of Fronten
 This time I used Grid for the design, which was nice to play with! 
 It took me a while to find out how to change the track color of the slider, but I got there 😊. 
 
-These page view ranges and the monthly price totals were given by Frontend Mentor:
+These page view ranges and monthly price totals were given by Frontend Mentor:
 
 - 10K pageviews / $8 per month
 - 50K pageviews / $12 per month
