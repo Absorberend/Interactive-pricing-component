@@ -45,20 +45,6 @@ const viewCheck = function () {
 //screentest after resize
 Query.addEventListener("change", screenTest);
 
-//Check to make sure that every number ends on 2 decimals (and not 3+).
-const decimalCheck = function (value) {
-    if (value.toString().includes(".")) {
-        if (value >= 10 && value.toString().length === 4) {
-            return outputValue = `$${slider.value * 0.75}0`;
-        } else if (value <= 10 && value.toString().length === 3) {
-            return outputValue = `$${slider.value * 0.75}0`;
-        } else {
-            return outputValue = `$${slider.value * 0.75}`;
-        }
-    } else {
-        return outputValue = `$${slider.value * 0.75}.00`;
-    }
-}
 
 //Calculate the discounted  price
 const checkboxCheck = function () {
@@ -66,7 +52,7 @@ const checkboxCheck = function () {
         return output.innerHTML = `$${slider.value}.00`;
     } else {
         const sliderOutput = slider.value * 0.75;
-        return output.innerHTML = decimalCheck(sliderOutput);   
+        return output.innerHTML = `$${sliderOutput}.00`;   
     } 
 }
 
