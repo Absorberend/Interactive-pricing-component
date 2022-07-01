@@ -21,4 +21,4 @@ https://www.frontendmentor.io/challenges/interactive-pricing-component-t0m8PIyY8
 
 View my solution at: https://master--delicate-granita-d3b952.netlify.app/
 
-Feedback is welcome! Especially the JavaScript 😁
+Feedback is welcome! Especially about JavaScript 😁
