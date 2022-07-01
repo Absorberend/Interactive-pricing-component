@@ -134,7 +134,6 @@ li span {
     align-items: center;
 }
 
-
 .slider {
     -webkit-appearance: none;
     width: 95%;
@@ -242,7 +241,6 @@ li span {
     border-radius: 30px;
     cursor: pointer;
 }
-
 
 .slider__yearly__discount_wrapper {
     display: flex;
