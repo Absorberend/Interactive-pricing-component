@@ -5,11 +5,7 @@ const discount = document.getElementById("discount");
 const Query = window.matchMedia('(max-width: 649px)');
 const views = document.getElementById('slider__views');
 
-let outputValue = 16;
-let backupValue = 12;
-let toggle = false;
-
-//Add proper discount text
+/* Function to define the proper discount text */
 function screenTest(e) {
   if (e.matches) {
     /* the viewport is 650 pixels wide or less */
@@ -20,109 +16,73 @@ function screenTest(e) {
   }
 }
 
-//Onload screentest
-window.onload = function () {
-    screenTest(Query);
-    output.innerHTML = '$' + outputValue + '.00';
-}
-
-//screentest after resize
+/* Change discount text after window resize */
 Query.addEventListener("change", screenTest);
 
-
-//Instantly view price change on screen when checkbox is checked
-checkbox.addEventListener("input", function() {
-    if (toggle === false) {
-    output.innerHTML = '$' + backupValue + '.00';
-    toggle = true;
-    } else {
-    output.innerHTML = '$' + outputValue + '.00';   
-    toggle = false;
+/* Define price and pageviews for each object */
+const pricing = [
+    {
+        price: 8,
+        pageviews: '10K'
+    },
+    {
+        price: 12,
+        pageviews: '50K'
+    },
+    {
+        price: 16,
+        pageviews: '100K'
+    },
+    {
+        price: 24,
+        pageviews: '500K'
+    },
+    {
+        price: 36,
+        pageviews: '1M'
     }
-});
+];
 
+/* Connect every pricing object with the slider */
+const setPrice = {
+    0: Object.values(pricing[0]),
+    25: Object.values(pricing[1]),
+    50: Object.values(pricing[2]),
+    75: Object.values(pricing[3]),
+    100: Object.values(pricing[4])
+};
+
+
+/* Change slider track color based on slider value. */
 slider.addEventListener("input", function() {
-    let track = slider.value;
+    /* track will be used as an argument for the outPrice function to set the price
+    in the index.html I have set the range from 0-100 with steps = 25. Meaning 5 steps total. */
+    let track = Number.parseInt(slider.value);
 
-    //Change slider track color based on slider value.
     slider.style.background = `linear-gradient(90deg, hsl(174, 77%, 80%)${track}%, hsl(224, 65%, 95%)${track}%)`;
 
-    //View prices based on slider value and if checkbox is checked.
-    if (!checkbox.checked) {
-        if (track === '0') {
-            outputValue = 8;
-            views.innerHTML = '10k';
-            output.innerHTML = '$' + outputValue + '.00';
-            backupValue = 6;
-            toggle = false;
-    
-        } else if (track === '25') {
-            outputValue = 12;
-            views.innerHTML = '50k';
-            output.innerHTML = '$' + outputValue + '.00';
-            backupValue = 9;
-            toggle = false;
-    
-        } else if (track === '50') {
-            outputValue = 16;
-            views.innerHTML = '100k';
-            output.innerHTML = '$' + outputValue + '.00';
-            backupValue = 12;
-            toggle = false;
-    
-        } else if (track === '75') {
-            outputValue = 24;
-            views.innerHTML = '500k';
-            output.innerHTML = '$' + outputValue + '.00';
-            backupValue = 18;
-            toggle = false;
-    
-        } else if (track === '100') {
-            outputValue = 36;
-            views.innerHTML = '1M';
-            output.innerHTML = '$' + outputValue + '.00';
-            backupValue = 27;
-            toggle = false;
-        }
-    } else {
-        if (track === '0') {
-            outputValue = 6;
-            views.innerHTML = '10k';
-            output.innerHTML = '$' + outputValue + '.00';
-            backupValue = 8;
-            toggle = false;
-            
-        } else if (track === '25') {
-            outputValue = 9;
-            views.innerHTML = '50k';
-            output.innerHTML = '$' + outputValue + '.00';
-            backupValue = 12;
-            toggle = false;
-            
-        } else if (track === '50') {
-            outputValue = 12;
-            views.innerHTML = '100k';
-            output.innerHTML = '$' + outputValue + '.00';
-            backupValue = 16;
-            toggle = false;
-
-        } else if (track === '75') {
-            outputValue = 18;
-            views.innerHTML = '500k';
-            output.innerHTML = '$' + outputValue + '.00';
-            backupValue = 24;
-            toggle = false;
-
-        } else if (track === '100') {
-            outputValue = 27;
-            views.innerHTML = '1M';
-            output.innerHTML = '$' + outputValue + '.00';
-            backupValue = 36;
-            toggle = false;
-        }
-    }
+    /* Call this function to show the correct prices and pageviews */
+    outputPrice(track);
 });
 
+/* Show the correct prices and pageviews when moving the slider */
+outputPrice = function (track) {
+    
+    /* e.g. if argument "track" (slider.value) === 50 it will show the values of the 3rd pricing object (see pricing obj above) with price: 16 and pageviews: 100k */
+    if (!checkbox.checked) {
+        output.innerHTML = `$${setPrice[track][0].toFixed(2)}`, views.innerHTML = setPrice[track][1];
+    } else {
+        output.innerHTML = `$${(setPrice[track][0] * 0.75).toFixed(2)}`, views.innerHTML = setPrice[track][1];    
+    }
+}
 
+/* Show the correct price when you toggle the checkbox */
+checkbox.addEventListener("input", function () {
+    outputPrice(slider.value);
+});
 
-   
+/* Change discount text and set the default price+pageviews onload */
+window.onload = function () {
+    screenTest(Query);
+    outputPrice(slider.value);
+}
