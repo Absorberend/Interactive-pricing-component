@@ -2,7 +2,7 @@ const slider = document.getElementById("myRange");
 const checkbox = document.getElementById("myCheckbox");
 const output = document.getElementById("value");
 const discount = document.getElementById("discount");
-const Query = window.matchMedia('(max-width: 649px)');
+const query = window.matchMedia('(max-width: 649px)');
 const views = document.getElementById('slider__views');
 
 /* Function to define the proper discount text */
@@ -17,7 +17,7 @@ function screenTest(e) {
 }
 
 /* Change discount text after window resize */
-Query.addEventListener("change", screenTest);
+query.addEventListener("change", screenTest);
 
 /* Define price and pageviews for each object */
 const pricing = [
@@ -83,6 +83,6 @@ checkbox.addEventListener("input", function () {
 
 /* Change discount text and set the default price+pageviews onload */
 window.onload = function () {
-    screenTest(Query);
+    screenTest(query);
     outputPrice(slider.value);
 }
