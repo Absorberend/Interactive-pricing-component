@@ -50,16 +50,6 @@ const pricing = [
     }
 ];
 
-slider.addEventListener("input", () => {
-    /* Change slider track color based on slider value. */
-    track = Number.parseInt(slider.value);
-
-    slider.style.background = `linear-gradient(90deg, hsl(174, 77%, 80%)${track}%, hsl(224, 65%, 95%)${track}%)`;
-
-    /* Call this function to show the correct prices and pageviews */
-    outputPrice(track);
-});
-
 /* Show the correct prices and pageviews when moving the slider */
 outputPrice = track => {
     const pricingObjs = pricing.find(pricingOBj => pricingOBj.trackPercentage === track);
@@ -71,6 +61,16 @@ outputPrice = track => {
         output.innerHTML = `$${(pricingObjs.price * 0.75).toFixed(2)}`, views.innerHTML = pricingObjs.pageviews;    
     }
 }
+
+slider.addEventListener("input", () => {
+    /* Change slider track color based on slider value. */
+    track = Number.parseInt(slider.value);
+
+    slider.style.background = `linear-gradient(90deg, hsl(174, 77%, 80%)${track}%, hsl(224, 65%, 95%)${track}%)`;
+
+    /* Call this function to show the correct prices and pageviews */
+    outputPrice(track);
+});
 
 /* Show the correct price when you toggle the checkbox */
 checkbox.addEventListener("input", () => {
