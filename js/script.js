@@ -5,8 +5,10 @@ const discount = document.getElementById("discount");
 const query = window.matchMedia('(max-width: 649px)');
 const views = document.getElementById('slider__views');
 
+let track = Number.parseInt(slider.value);
+
 /* Function to define the proper discount text */
-function screenTest(e) {
+screenTest = e => {
   if (e.matches) {
     /* the viewport is 650 pixels wide or less */
     discount.innerHTML = '-25%';
@@ -19,45 +21,38 @@ function screenTest(e) {
 /* Change discount text after window resize */
 query.addEventListener("change", screenTest);
 
-/* Define price and pageviews for each object */
+/* Define price, pageviews and trackpercentage(slider value) for each object */
 const pricing = [
     {
         price: 8,
-        pageviews: '10K'
+        pageviews: '10K',
+        trackPercentage: 0
     },
     {
         price: 12,
-        pageviews: '50K'
+        pageviews: '50K',
+        trackPercentage: 25
     },
     {
         price: 16,
-        pageviews: '100K'
+        pageviews: '100K',
+        trackPercentage: 50
     },
     {
         price: 24,
-        pageviews: '500K'
+        pageviews: '500K',
+        trackPercentage: 75
     },
     {
         price: 36,
-        pageviews: '1M'
+        pageviews: '1M',
+        trackPercentage: 100
     }
 ];
 
-/* Connect every pricing object with the slider */
-const setPrice = {
-    0: Object.values(pricing[0]),
-    25: Object.values(pricing[1]),
-    50: Object.values(pricing[2]),
-    75: Object.values(pricing[3]),
-    100: Object.values(pricing[4])
-};
-
-
-/* Change slider track color based on slider value. */
-slider.addEventListener("input", function() {
-    /* track will be used as an argument for the outPrice function to set the price
-    in the index.html I have set the range from 0-100 with steps = 25. Meaning 5 steps total. */
-    let track = Number.parseInt(slider.value);
+slider.addEventListener("input", () => {
+    /* Change slider track color based on slider value. */
+    track = Number.parseInt(slider.value);
 
     slider.style.background = `linear-gradient(90deg, hsl(174, 77%, 80%)${track}%, hsl(224, 65%, 95%)${track}%)`;
 
@@ -66,23 +61,24 @@ slider.addEventListener("input", function() {
 });
 
 /* Show the correct prices and pageviews when moving the slider */
-outputPrice = function (track) {
-    
-    /* e.g. if argument "track" (slider.value) === 50 it will show the values of the 3rd pricing object (see pricing obj above) with price: 16 and pageviews: 100k */
+outputPrice = track => {
+    const pricingObjs = pricing.find(pricingOBj => pricingOBj.trackPercentage === track);
+
+    /* e.g. if argument "track" (slider.value) === 50 it will match with the trackPercentage value of the 3rd pricing object (see pricing obj above) with price: 16 and pageviews: 100k */
     if (!checkbox.checked) {
-        output.innerHTML = `$${setPrice[track][0].toFixed(2)}`, views.innerHTML = setPrice[track][1];
+        output.innerHTML = `$${pricingObjs.price.toFixed(2)}`, views.innerHTML = pricingObjs.pageviews;
     } else {
-        output.innerHTML = `$${(setPrice[track][0] * 0.75).toFixed(2)}`, views.innerHTML = setPrice[track][1];    
+        output.innerHTML = `$${(pricingObjs.price * 0.75).toFixed(2)}`, views.innerHTML = pricingObjs.pageviews;    
     }
 }
 
 /* Show the correct price when you toggle the checkbox */
-checkbox.addEventListener("input", function () {
-    outputPrice(slider.value);
+checkbox.addEventListener("input", () => {
+    outputPrice(track);
 });
 
 /* Change discount text and set the default price+pageviews onload */
-window.onload = function () {
+window.onload = () => {
     screenTest(query);
-    outputPrice(slider.value);
+    outputPrice(track);
 }
